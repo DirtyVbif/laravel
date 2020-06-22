@@ -1,0 +1,34 @@
+// ------------------------------------------------------------------------
+// fonts
+// @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:300&display=swap');
+//font-family: 'Source Code Pro', monospace;
+
+// ------------------------------------------------------------------------
+// sass variables
+$font_size: 24px;
+$transition: all .25s ease-in-out;
+
+// colors
+$clr_bkgd: #f7f7f7;
+$clr_text: #545454;
+$clr_link: #317ebd;
+$clr_linkHover: #cca420;
+
+// ------------------------------------------------------------------------
+// sass mixins
+@import 'blocks/mixins';
+
+// ------------------------------------------------------------------------
+// main document elements styles
+@import 'blocks/html';
+
+// ------------------------------------------------------------------------
+// BEM files
+@import 'blocks/page';
+@import 'blocks/container';
+@import 'blocks/menu';
+@import 'blocks/news';
+
+// ------------------------------------------------------------------------
+// overrides and others
+@import 'blocks/other';

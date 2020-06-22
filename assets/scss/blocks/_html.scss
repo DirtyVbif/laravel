@@ -1,0 +1,40 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-size: $font_size;
+  color: $clr_text;
+  background: $clr_bkgd;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: $clr_link;
+  text-decoration: none;
+  transition: $transition;
+  &:hover { color: $clr_linkHover; }
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+button, input[type="submit"] {
+  background: none;
+  border: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  transition: $transition;
+  &:focus { outline: none; }
+}

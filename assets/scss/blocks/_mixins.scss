@@ -1,0 +1,36 @@
+@mixin vwMax($_vwWidth) {
+  @media (max-width: $_vwWidth) {
+    @content;
+  }
+}
+
+@mixin vwMin($_vwWidth) {
+  @media (min-width: $_vwWidth) {
+    @content;
+  }
+}
+
+@mixin container() {  
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  min-width: 320px;
+  @include vwMax(1230px) { width: 930px;}
+  @include vwMax(992px) { width: calc(100% - 30px); }
+}
+
+@mixin titleBottomLine() {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    border-radius: 5px;
+    background: #1989d4df;
+  }
+}

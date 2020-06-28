@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  
+  @isset ($title)
   <title>{{ $title }}</title>
+  @endisset
 
   <meta name="robots" content="noindex, nofollow">
 
@@ -28,21 +30,28 @@
 
 <body>
   <header>
-    @section('header-menu')
-    <nav class="menu-wrapper">
-      <ul class="menu">
-        @if (\Request::route()->getName() !== 'home')
-          <li class="menu__item"><a class="menu__link" href="{{ route('home') }}">Home</a></li>
-        @endif
-        <li class="menu__item"><a class="menu__link" href="{{ route('news') }}">News</a></li>
-        <li class="menu__item"><a class="menu__link" href="{{ route('about') }}">About</a></li>
-      </ul>
-    </nav>
+    @section('nav-bar')
+      @include('chunks/nav-bar')
+    @show
+    
+    @section('user-bar')
+      <div class="container container_header-line">
+        @include('chunks/breadcrumbs')
+        @include('chunks/user-bar')
+      </div>
     @show
   </header>
 
-  <main>
-    @yield('content')
+  <main class="container">
+    <section>
+      @isset ($page_title)
+        @section('page-title')
+          <h1 class="page-header">{{ $page_title }}</h1>
+        @show
+      @endisset
+
+      @yield('content')
+    </section>
   </main>
 
   <footer class="page-footer">

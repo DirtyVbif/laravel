@@ -1,18 +1,20 @@
 // ------------------------------------------------------------------------
 // block
-.container {
-  @include container();
+.user-bar {
+  display: flex;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 5px 0;
   // ------------------------------------------------------------------------
   // block elements
+  &__item {
+    &:not(:first-child) { margin-left: 10px; }
+  }
+  &__link {
+    padding: 3px 15px;
+    text-transform: capitalize;
+  }
 
   // ------------------------------------------------------------------------
   // block modificators
-  &_header-line {    
-    display: flex;
-    justify-content: space-between;
-  }
-  &_footer {
-    font-size: 18px;
-    text-align: center;
-  }
 }

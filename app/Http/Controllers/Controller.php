@@ -16,7 +16,7 @@ class Controller extends BaseController
     public function index()
     {
         $data = [
-            'title' => sprintf(self::TITLE_MASK, 'Home page'),
+            'title' => title('Home Page'),
             'page_title' => 'Welcome, %username%'
         ];
         
@@ -26,7 +26,7 @@ class Controller extends BaseController
     public function indexNews()
     {
         $data = [
-            'title' => sprintf(self::TITLE_MASK, 'News page'),
+            'title' => title('News Page'),
             'page_title' => 'News page',
             'news' => $this->getNewsList()
         ];
@@ -37,7 +37,7 @@ class Controller extends BaseController
     public function indexAbout()
     {
         $data = [
-            'title' => sprintf(self::TITLE_MASK, 'About'),
+            'title' => title('About Project'),
             'page_title' => 'About'
         ];
         

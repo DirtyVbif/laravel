@@ -22,8 +22,51 @@ Route::get('/', function() {
 Route::get('/home', 'Controller@index')
     ->name('home');
 
-Route::get('/news', 'Controller@indexNews')
-    ->name('news');
+/*
+ *  news pages
+ */
+Route::group(
+    ['prefix' => 'news'],
+    function() {
+        Route::get('/', 'NewsController@index')
+            ->name('news');
+        
+        Route::post('/', 'NewsController@indexPostRequest');
 
+        Route::get('/create', 'NewsController@create')
+            ->name('news/create');
+
+        Route::get('/{category}', 'NewsController@category')
+            ->name('news/category');
+
+        Route::get('/{category}/{id}', 'NewsController@article')
+            ->name('news/article');
+    }
+);
+
+/*
+ *  user pages
+ */
+Route::group(
+    ['prefix' => 'user'],
+    function ()
+    {
+        Route::get('/', function() {
+            return redirect()->route('user/login');
+        })
+        ->name('user');
+        Route::post('/', 'UserController@indexPostRequest');
+
+        Route::get('/login', 'UserController@login')
+            ->name('user/login');
+
+        Route::get('/register', 'UserController@register')
+            ->name('user/register');
+    }
+);
+
+/*
+ *  other pages
+ */
 Route::get('/about', 'Controller@indexAbout')
     ->name('about');

@@ -1,18 +1,18 @@
 // ------------------------------------------------------------------------
 // block
-.container {
-  @include container();
+.content-block {
+  display: flex;
+  flex-direction: column;
   // ------------------------------------------------------------------------
   // block elements
 
   // ------------------------------------------------------------------------
   // block modificators
-  &_header-line {    
-    display: flex;
-    justify-content: space-between;
-  }
-  &_footer {
-    font-size: 18px;
-    text-align: center;
+  &_register {
+    flex-direction: row;
+    @include vwMax(992px) { flex-direction: column; }
+    &__text {
+      margin-left: 15px;
+    }
   }
 }

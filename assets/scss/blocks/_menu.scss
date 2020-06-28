@@ -3,7 +3,9 @@
 .menu-wrapper {
   position: relative;
   height: 60px;
-  background: #e1e7e9;
+  background: $clr_menu;
+  color: $clr_lightGrey;
+  box-shadow: 0 0 5px $clr_darkGrey;
   // ------------------------------------------------------------------------
   // block elements
 
@@ -25,6 +27,11 @@
     align-items: center;
     height: 100%;
     padding: 0 30px;
+    color: inherit;
+    text-transform: uppercase;
+    &:hover {      
+      background: adjust-color($color: $clr_menu, $saturation: -5%, $lightness: 5%);
+    }
   }
 
   // ------------------------------------------------------------------------

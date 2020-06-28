@@ -4,15 +4,25 @@
 //font-family: 'Source Code Pro', monospace;
 
 // ------------------------------------------------------------------------
-// sass variables
-$font_size: 24px;
-$transition: all .25s ease-in-out;
+// settings
+$font_size: 20px;
+$transition: all .15s ease-out;
 
+// ------------------------------------------------------------------------
 // colors
-$clr_bkgd: #f7f7f7;
 $clr_text: #545454;
+$clr_darkGrey: #707e74;
+$clr_grey: #b1c3b6;
+$clr_lightGrey: #e1e7e9;
+$clr_green: #21c72f;
+
+// ------------------------------------------------------------------------
+// elements
+$clr_bkgd: #f7f7f7;
+$clr_menu: #4e455c;
+$clr_footer: #657f94;
 $clr_link: #317ebd;
-$clr_linkHover: #cca420;
+$clr_linkHover: #e0b320;
 
 // ------------------------------------------------------------------------
 // sass mixins
@@ -26,8 +36,13 @@ $clr_linkHover: #cca420;
 // BEM files
 @import 'blocks/page';
 @import 'blocks/container';
+@import 'blocks/button';
 @import 'blocks/menu';
 @import 'blocks/news';
+@import 'blocks/user-bar';
+@import 'blocks/flexbox';
+@import 'blocks/form';
+@import 'blocks/content';
 
 // ------------------------------------------------------------------------
 // overrides and others

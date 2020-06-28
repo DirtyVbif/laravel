@@ -14,5 +14,11 @@
   &_footer {
     font-size: 18px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__line {
+      padding: 5px 0;
+    }
   }
 }

@@ -42,3 +42,47 @@ function getCategoriesList(string $category = null, int $id = null)
 
   return $categories[$category]['container'][$id];
 }
+
+function getNewsList(int $count = null)
+{
+  $news = [];
+  foreach(getCategoriesList() as $category => $data) {
+    foreach($data['container'] as $id => $article) {
+      array_push($news, [
+        'id' => $id,
+        'title' => $article,
+        'summary' => getArticleContent($category, $id),
+        'category' => $category,
+        'category_name' => $data['name']
+      ]);
+    }
+  }
+  if(!$count) {
+    return $news;
+  }
+  $slice = [];
+  do {
+    $x = rand(1, count($news)) - 1;
+    if(isset($slice[$x])) { continue; }
+    $slice[$x] = $news[$x];
+  } while($count > count($slice));
+  return $slice;
+}
+
+function getArticleContent(string $category, int $id)
+{
+  $name = md5("article-$category-$id");
+  $dir = __DIR__."/../cache";
+  $file = "$dir/$name";
+  if(!file_exists($dir)) {
+    mkdir($dir);
+  }
+  if(!file_exists($file)) {
+    $handle = fopen($file, 'w');
+    fwrite($handle, file_get_contents('https://loripsum.net/api/1/short'));
+    fclose($handle);
+  }
+  $summary = file_get_contents($file);
+  $summary = strlen($summary) > 200 ? substr($summary, 0, 197) . ' ...' : $summary;
+  return $summary;
+}

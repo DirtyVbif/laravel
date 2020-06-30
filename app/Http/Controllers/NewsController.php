@@ -11,40 +11,49 @@ class NewsController extends Controller
         $data = [
             'title' => title('News categories'),
             'page_title' => 'Новостные рубрики',
-            'items' => getCategoriesList()
+            'categories' => getCategoriesList(),
+            'news' => getNewsList()
         ];
 
         return view('content/news/index', $data);
     }
 
-    public function category()
+    public function category($category = null)
     {
-        $category = request()->segment(2);
+        if(is_null($category)) {
+            $category = request()->segment(2);
+        }
         $news = getCategoriesList($category);
-        foreach($news['container'] as &$item) {
-            $summary = file_get_contents('https://loripsum.net/api/1/short');
-            $summary = strlen($summary) > 200 ? substr($summary, 0, 197) . ' ...' : $summary;
+        foreach($news['container'] as $id => &$item) {
             $item = [
                 'title' => $item,
-                'summary' => $summary
+                'summary' => getArticleContent($category, $id),
+                'id' => $id,
+                'category' => $category
             ];
         }
         $data = [
             'title' => title('"' . $news['name'] . '" news'),
             'page_title' => 'Новости по теме "' . $news['name'] . '"',
-            'items' => $news['container'],
+            'news' => $news['container'],
             'category' => $category
         ];
 
         return view('content/news/category', $data);
     }
 
-    public function article()
+    public function article($category = null, $id = null)
     {
-        $category = request()->segment(2);
-        $id = request()->segment(3);
+        if(is_null($category)) {
+            $category = request()->segment(2);
+        }
+        if(is_null($id)) {
+            $id = request()->segment(3);
+        }
         $article = getCategoriesList($category, $id);
-        $content = file_get_contents('https://loripsum.net/api/3/medium');
+        $n = rand(2, 5);
+        $size = $n < 4 ? 'long' : 'medium';
+        $content = file_get_contents("https://loripsum.net/api/$n/$size");
         $data = [
             'title' => title('"' . $article . '" news'),
             'page_title' => $article,

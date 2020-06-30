@@ -15,11 +15,8 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/main.min.css">
-
-  <!-- scripts -->
-  {{-- <script src="/js/jquery.min-3.5.1.js"></script> --}}
-  <script src="/js/main.min.js?v=<?=time()?>"></script>
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.min.css') }}">
+  @stack('css')
 
   <!-- livereload -->
   <script>
@@ -31,24 +28,24 @@
 <body>
   <header>
     @section('nav-bar')
-      @include('chunks/nav-bar')
+      <x-nav-bar></x-nav-bar>
     @show
     
     @section('user-bar')
       <div class="container container_header-line">
-        @include('chunks/breadcrumbs')
-        @include('chunks/user-bar')
+        <x-breadcrumbs></x-breadcrumbs>
+        <x-user-bar></x-user-bar>
       </div>
     @show
   </header>
 
-  <main class="container">
+  <main class="container container_content">
     <section>
-      @isset ($page_title)
-        @section('page-title')
+      @section('page-title')
+        @isset ($page_title)
           <h1 class="page-header">{{ $page_title }}</h1>
-        @show
-      @endisset
+        @endisset
+      @show
 
       @yield('content')
     </section>
@@ -56,12 +53,13 @@
 
   <footer class="page-footer">
     @section('footer')
-      <div class="container container_footer">
-        <div class="container_footer__line">All rights reserved &copy; 2020 by <a href="https://vk.com/dirty.mike" target="_blank" class="footer-link">Michael Uspensky</a></div>
-        <div class="container_footer__line"><a href="https://github.com/DirtyVbif/laravel" target="_blank" class="footer-link">This project on git</a></div>
-      </div>
+      <x-footer-rights></x-footer-rights>
     @show
   </footer>
 
+  <!-- scripts -->
+  {{-- <script type="text/javascript" src="{{ asset('/js/jquery.min-3.5.1.js') }}"></script> --}}
+  <script type="text/javascript" src="{{ asset('/js/main.min.js?v='.time()) }}"></script>
+  @stack('js')
 </body>
 </html>

@@ -48,6 +48,15 @@
     padding: 0 10px;
     & p { margin: 0; }
   }
+  &__tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background: $clr_lightGrey;
+    font-size: 14px;
+  }
 
   // ------------------------------------------------------------------------
   // block modificators

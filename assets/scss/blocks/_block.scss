@@ -1,0 +1,10 @@
+.block-teaser {
+  &__footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 10px;
+  }
+  &__more-link {
+    font-size: 16px;
+  }
+}

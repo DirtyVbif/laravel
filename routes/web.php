@@ -53,8 +53,8 @@ Route::group(
     {
         Route::get('/', function() {
             return redirect()->route('user/login');
-        })
-        ->name('user');
+        })->name('user');
+
         Route::post('/', 'UserController@indexPostRequest');
 
         Route::get('/login', 'UserController@login')

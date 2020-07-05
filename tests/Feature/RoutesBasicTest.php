@@ -27,7 +27,6 @@ class BasicTestRoutes extends TestCase
     {
         $response = $this->get(route('home'));
         $response
-            ->assertLocation('localhost')
             ->assertHeader('content-Type', 'text/html; charset=UTF-8')
             ->assertSeeText('Последние новости')
             ->assertDontSeeText('Такого текста не существует')
@@ -38,7 +37,6 @@ class BasicTestRoutes extends TestCase
     {
         $response = $this->get(route('news'));
         $response
-            ->assertLocation('/news')
             ->assertHeader('content-Type', 'text/html; charset=UTF-8')
             ->assertSeeText('Новостные рубрики')
             ->assertDontSeeText('Такого текста не существует')

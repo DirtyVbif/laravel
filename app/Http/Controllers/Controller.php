@@ -23,14 +23,4 @@ class Controller extends BaseController
         
         return view('content/welcome', $data);
     }
-
-    public function indexAbout()
-    {
-        $data = [
-            'title' => title('About Project'),
-            'page_title' => 'About'
-        ];
-        
-        return view('content/about', $data);
-    }
 }

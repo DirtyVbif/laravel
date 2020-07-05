@@ -13,4 +13,9 @@
             <a href="{{ route('news') }}" class="block-teaser__more-link button button_ghost">Больше новостей</a>
         </footer>
     </div>
+
+    <div class="feedback-wrapper">
+        <h2 class="text-center">Обратная связь</h2>
+        <x-feedback-form></x-feedback-form>
+    </div>
 @endsection

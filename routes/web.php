@@ -68,5 +68,12 @@ Route::group(
 /*
  *  other pages
  */
-Route::get('/about', 'Controller@indexAbout')
-    ->name('about');
+Route::group(
+    ['prefix' => 'about'],
+    function () {
+        Route::get('/', 'AboutController@index')
+            ->name('about');
+
+        Route::post('/', 'AboutController@indexPostRequest');
+    }
+);

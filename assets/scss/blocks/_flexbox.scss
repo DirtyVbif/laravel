@@ -1,7 +1,15 @@
 .flex {
   display: flex;
 
+  &_row {
+    flex-direction: row;
+  }
+
   &_column {
     flex-direction: column;
+  }
+
+  &_space-around {
+    justify-content: space-around;
   }
 }

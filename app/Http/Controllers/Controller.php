@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Modules\Module;
 
 class Controller extends BaseController
 {
@@ -15,10 +16,12 @@ class Controller extends BaseController
 
     public function index()
     {
+        $module = new Module();
         $data = [
             'title' => title('Home Page'),
             'page_title' => 'Welcome, %username%',
-            'news' => getNewsList(4)
+            'news' => getNewsList(4),
+            'module' => $module->index()
         ];
         
         return view('content/welcome', $data);

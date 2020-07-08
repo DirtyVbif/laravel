@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -14,6 +16,10 @@ class NewsController extends Controller
             'categories' => getCategoriesList(),
             'news' => getNewsList()
         ];
+
+        // $news = DB::select('SELECT `id`, `title`, `body` FROM `news`;');
+        $news = new News();
+        dd($news->getAll());
 
         return view('content/news/index', $data);
     }

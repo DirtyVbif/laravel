@@ -1,19 +1,13 @@
-<ul class="news-wrapper">
-  @foreach ($news as $item)
-    <li class="news-block">
-      @php
-        $data = [
+@isset($news)
+  <ul class="news-wrapper">
+    @foreach ($news as $item)
+      <li class="news-wrapper__row">        
+        @include('chunks/article-teaser', [
           'class' => 'news-block',
-          'id' => $item['id'],
-          'item' => $item,
-          'category' => $item['category'],
-        ];
-        if(isset($item['category_name'])) {
-          $data['category_name'] = $item['category_name'];
-        }
-      @endphp
-      
-      @include('chunks/article-teaser', $data)
-    </li>
-  @endforeach
-</ul>
+          'id' => $item->id,
+          'item' => $item
+        ])
+      </li>
+    @endforeach
+  </ul>
+@endisset

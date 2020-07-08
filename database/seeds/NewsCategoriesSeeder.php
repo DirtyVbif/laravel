@@ -13,7 +13,8 @@ class NewsCategoriesSeeder extends Seeder
     public function run()
     {
         $news_id_list = $this->getNewsIdList();
-        $cat_id_list = $this->getCategoriesIdList();
+        $cat_id_list = $this->getCategoriesIdList();        
+        if(empty($news_id_list) || empty($cat_id_list)) { return; }
         $count = count($cat_id_list) - 1;
         
         foreach($news_id_list as $news) {
@@ -38,7 +39,11 @@ class NewsCategoriesSeeder extends Seeder
 
     private function getNewsIdList()
     {
-        return DB::table('news')->select(['entid as id'])->get();
+        return DB::table('news as n')
+            ->leftJoin('news_categories as nc', 'nc.entid', '=', 'n.entid')
+            ->select(['n.entid as id'])
+            ->where('nc.entid', 'is', 'null')
+            ->get();
     }
 
     private function getCategoriesIdList()

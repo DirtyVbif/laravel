@@ -36,10 +36,10 @@ Route::group(
         Route::get('/create', 'NewsController@create')
             ->name('news/create');
 
-        Route::get('/{category}', 'NewsController@category')
+        Route::get('/category/{name}', 'NewsController@category')
             ->name('news/category');
 
-        Route::get('/{category}/{id}', 'NewsController@article')
+        Route::get('/article/{id}', 'NewsController@article')
             ->name('news/article');
     }
 );

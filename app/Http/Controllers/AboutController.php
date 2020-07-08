@@ -30,7 +30,6 @@ class AboutController extends Controller
 
     private function storeFeedback($data)
     {
-
         $file = storage_path(self::FEEDBACK_FILE);
         if(!file_exists($file)) {
             $handle = fopen($file, 'w');

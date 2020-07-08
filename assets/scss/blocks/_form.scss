@@ -34,7 +34,13 @@
     &_area {
       padding: 5px 10px;
       line-height: 1.2em;
-      height: calc(6em + 12px);
+      height: calc(9em + 12px);
+      resize: vertical;
+    }
+    &_smallarea {
+      padding: 5px 10px;
+      line-height: 1.2em;
+      height: calc(3em + 12px);
       resize: vertical;
     }
     &_pw-create {

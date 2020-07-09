@@ -34,3 +34,12 @@
     background: #1989d4df;
   }
 }
+
+@mixin hoverListItem() {
+  border-radius: 4px;
+  transition: $transition;
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 0 8px #cdcdcd;
+  }
+}

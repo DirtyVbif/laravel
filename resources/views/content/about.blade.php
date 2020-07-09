@@ -10,4 +10,6 @@
         <h2 class="text-center">Обратная связь</h2>
         <x-feedback-form></x-feedback-form>
     </div>
+
+    @include('chunks/last-feedbacks')
 @endsection

@@ -1,0 +1,33 @@
+// ------------------------------------------------------------------------
+// block
+.feedbacks-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 16px;
+  gap: 15px;
+  // ------------------------------------------------------------------------
+  // block elements
+  &__item {
+    @include hoverListItem();
+    padding: 5px 10px;
+  }
+  &__item-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__author {
+    font-weight: 600;
+    margin-right: 1em;
+  }
+  &__date {
+    margin-left: auto;
+    font-size: 14px;
+  }
+  &__text {
+    font-style: italic;
+    margin: 5px 0;
+  }
+
+  // ------------------------------------------------------------------------
+  // block modificators
+}

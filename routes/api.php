@@ -22,10 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/feedbacks', function () {
-    $file = storage_path(AboutController::FEEDBACK_FILE);
-    if(!file_exists($file)) {
-        return json_encode(['respone' => 'no data']);
-    }
-    return file_get_contents($file);
-});
+Route::get('/feedbacks', 'AboutController@getFeedbacksViaApi');

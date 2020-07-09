@@ -17,17 +17,12 @@
 // ------------------------------------------------------------------------
 // block
 .news-block {
+  @include hoverListItem();
   position: relative;
-  border-radius: 4px;
-  transition: $transition;
   padding: 0 0 10px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  &:hover {
-    background: #ffffff;
-    box-shadow: 0 0 8px #cdcdcd;
-  }
   // ------------------------------------------------------------------------
   // block elements
   &__link {
@@ -89,12 +84,7 @@
   // ------------------------------------------------------------------------
   // block elements
   &__item {
-    border-radius: 4px;
-    transition: $transition;
-    &:hover {
-      background: #ffffff;
-      box-shadow: 0 0 8px #cdcdcd;
-    }
+    @include hoverListItem();
   }
   &__link {
     display: block;

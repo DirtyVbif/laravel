@@ -42,7 +42,7 @@ class NewsCategoriesSeeder extends Seeder
         return DB::table('news as n')
             ->leftJoin('news_categories as nc', 'nc.entid', '=', 'n.entid')
             ->select(['n.entid as id'])
-            ->where('nc.entid', 'is', 'null')
+            ->whereNull('nc.entid')
             ->get();
     }
 

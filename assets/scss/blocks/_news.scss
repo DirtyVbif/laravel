@@ -99,3 +99,39 @@
   // ------------------------------------------------------------------------
   // block modificators
 }
+
+// ------------------------------------------------------------------------
+// block
+.news-article {
+  // ------------------------------------------------------------------------
+  // block elements
+  &__date {
+    font-size: 16px;
+  }
+  
+  &__categories,
+  &__categories-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  &__categories {
+    margin-right: 1em;
+  }
+  &__categories-link {
+    @include hoverListItem();
+    padding: 3px 10px;
+    display: block;
+    margin-left: 1em;
+    border-radius: 5px;
+  }
+
+  &__categories-title {
+    font-size: $font_size;
+    margin: 10px 0;
+  }
+
+  // ------------------------------------------------------------------------
+  // block modificators
+}

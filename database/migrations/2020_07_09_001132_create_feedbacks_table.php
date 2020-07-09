@@ -39,9 +39,6 @@ class CreateFeedbacksTable extends Migration
                 DEFAULT CURRENT_TIMESTAMP
                 AFTER `content`'
         );
-        
-        DB::table('entity_types')
-            ->insert(['name' => 'feedback', 'source_table' => 'feedbacks', 'human_name' => 'Отзывы пользователей']);
     }
 
     /**
@@ -52,6 +49,5 @@ class CreateFeedbacksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('feedbacks');
-        DB::table('entity_types')->where('name', '=', 'feedback')->delete();
     }
 }

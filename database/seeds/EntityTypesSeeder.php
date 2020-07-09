@@ -17,12 +17,14 @@ class EntityTypesSeeder extends Seeder
             VALUES
             (1, ?, ?, ?),
             (2, ?, ?, ?),
-            (3, ?, ?, ?);";
-
+            (3, ?, ?, ?),
+            (4, ?, ?, ?);";
+            
         $bindings = [
             'news', 'news', 'Новостные материалы',
             'category', 'categories', 'Категории новостей',
-            'rss', 'rss_source', 'RSS-ленты новостей'
+            'rss', 'rss_source', 'RSS-ленты новостей',
+            'feedback', 'feedbacks', 'Отзывы пользователей'
         ];
         
         DB::insert($query, $bindings);

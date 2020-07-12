@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 class NewsModel extends Model
 {
     const SUMMARY_LIMIT = 240;
+    protected $table = 'news';
+    protected $primaryKey = 'entid';
+    protected $fillable = [
+        'title', 'summary', 'content'
+    ];
 
     public function getNewsList(int $limit = null)
     {

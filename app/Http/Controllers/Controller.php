@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FeedbackRequest;
-use App\NewsModel;
-use App\FeedbackModel;
+use App\Models\NewsModel;
+use App\Models\FeedbackModel;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;

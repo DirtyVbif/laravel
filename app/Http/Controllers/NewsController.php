@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsCreateArticleRequest;
-use App\NewsModel;
+use App\Models\NewsModel;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    
     public function index()
     {
         $News = new NewsModel();
@@ -17,6 +18,8 @@ class NewsController extends Controller
             'categories' => $News->getCategoriesList(),
             'news' => $News->getNewsList()
         ];
+
+        dd($News->all());
 
         return view('content/news/index', $data);
     }

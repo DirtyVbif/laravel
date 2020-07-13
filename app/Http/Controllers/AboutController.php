@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\FeedbackModel;
+use App\Models\Feedback;
 use App\Http\Requests\FeedbackRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
@@ -16,7 +12,7 @@ class AboutController extends Controller
 
     public function index()
     {
-        $model = new FeedbackModel();
+        $model = new Feedback();
         $data = [
             'title' => title('About Project'),
             'page_title' => 'About',
@@ -28,14 +24,14 @@ class AboutController extends Controller
 
     public function indexPostRequest(FeedbackRequest $request)
     {
-        $model = new FeedbackModel();
+        $model = new Feedback();
         $model->storeFeedback($request->validated());
         return redirect()->route('home');
     }
 
     public function getFeedbacksViaApi()
     {
-        $model = new FeedbackModel();
+        $model = new Feedback();
         return $model->getFeedbacksViaApi();
     }
 }

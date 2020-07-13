@@ -13,7 +13,9 @@
         "del": "^3.0.0",
         "gulp": "^4.0.0",
         "gulp-autoprefixer": "^6.0.0",
+        "gulp-concat": "^2.6.1",
         "gulp-csso": "^3.0.1",
+        "gulp-header": "^2.0.9",
         "gulp-rename": "^1.4.0",
         "gulp-sass": "^4.1.0"
     },

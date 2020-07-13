@@ -79,22 +79,38 @@
 // block
 .news-categories {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   // ------------------------------------------------------------------------
   // block elements
   &__item {
     @include hoverListItem();
+    display: grid;
+    grid-template-columns: 250px auto;
+    align-items: center;
+    justify-items: left;
+    padding-right: 10px;
+    margin-top: 10px;
   }
   &__link {
     display: block;
     padding: 10px 25px;
   }
-  &__link-add {
-    color: $clr_green;
-    border-color: $clr_green;
-    padding: 9px 24px;
-  }
+
+  // ------------------------------------------------------------------------
+  // block modificators
+}
+
+// ------------------------------------------------------------------------
+// block
+.news-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px 0;
+
+  // ------------------------------------------------------------------------
+  // block elements
 
   // ------------------------------------------------------------------------
   // block modificators

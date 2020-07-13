@@ -17,13 +17,15 @@ const src = {
 // =====================================================================
 // gulp packages
 // =====================================================================
-const gulp = require('gulp'), // gulp
-  sass = require('gulp-sass'), // sass compiler
-  minifyJS = require('gulp-terser'), // minification JS
-  autoPref = require('gulp-autoprefixer'), // css autoprefixer
-  rename = require('gulp-rename'), // rename outputs files
-  delFiles = require('del'), // files delete
-  cssMin = require('gulp-csso'); // minification css
+const gulp = require('gulp'),               // gulp
+  sass = require('gulp-sass'),              // sass compiler
+  minifyJS = require('gulp-terser'),        // minification JS
+  autoPref = require('gulp-autoprefixer'),  // css autoprefixer
+  rename = require('gulp-rename'),          // rename outputs files
+  delFiles = require('del'),                // files delete
+  cssMin = require('gulp-csso');            // minification css
+  concat = require('gulp-concat'),          // implode files into one
+  addHeader = require('gulp-header'),       // add first line into file
 
 // =====================================================================
 // gulp tasks
@@ -54,7 +56,12 @@ gulp.task('css', () => {
 // minifine and put main.js scripts into target directories
 gulp.task('js', () => {
   return gulp.src(src.assets.js)
+    .pipe(concat('main.js'))
+    .pipe(addHeader('"use strict";'))
     .pipe(minifyJS())
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(gulp.dest(src.dir.js));
 });
 

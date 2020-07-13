@@ -1,0 +1,29 @@
+.js-selected-categories {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.js-selected-category {
+  padding: 3px 12px;
+  display: flex;
+  align-items: center;
+  background: $clr_lightGrey;
+  border-radius: 4px;
+  transition: $transition;
+  margin: 5px;
+  &:hover {
+    background: adjust-color($color: $clr_lightGrey, $lightness: 3%);
+  }
+
+  &__del {
+    font-size: 1.5em;
+    margin-left: 3px;
+    line-height: 1;
+    cursor: pointer;
+    color: $clr_red;
+    transition: $transition;
+    &:hover {
+      color: $clr_redHover;
+    }
+  }
+}

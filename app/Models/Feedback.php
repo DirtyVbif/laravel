@@ -1,12 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class FeedbackModel extends Model
+class Feedback extends Model
 {
+    protected $table = 'feedbacks';
+    protected $primaryKey = 'fid';
+
     public function getFeedbacksViaApi()
     {
         $feedbacks = $this->getFeedbacksList();

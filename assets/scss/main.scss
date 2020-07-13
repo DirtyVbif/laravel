@@ -23,6 +23,8 @@ $clr_menu: #4e455c;
 $clr_footer: #657f94;
 $clr_link: #317ebd;
 $clr_linkHover: #e0b320;
+$clr_red: #aa1f0c;
+$clr_redHover: #db432f;
 
 // ------------------------------------------------------------------------
 // sass mixins
@@ -46,6 +48,7 @@ $clr_linkHover: #e0b320;
 @import 'blocks/content';
 @import 'blocks/block';
 @import 'blocks/feedbacks';
+@import 'blocks/select-box';
 
 // ------------------------------------------------------------------------
 // overrides and others

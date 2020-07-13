@@ -2,6 +2,10 @@
 
 @section('content')
   <div class="news-article">
+    <ul>
+      <li><a href="{{ route('news/article/edit', ['news' => $article->id]) }}">Редактировать</a></li>
+      <li><a href="{{ route('news/article/delete', ['news' => $article->id]) }}">Удалить</a></li>
+    </ul>
     <header class="news-article__header">
       <span class="news-article__date">{{ $article->date }}</span>
     </header>

@@ -1,7 +1,7 @@
 @extends('page')
 
 @section('content')
-  <form action="{{ route('news') }}" method="POST" class="form" id="form-create-article">
+  <form action="{{ route('news/article/create') }}" method="POST" class="form" id="form-create-article">
     <div class="form__errors-wrapper">
       @include('chunks/errors')
     </div>
@@ -9,19 +9,17 @@
     @csrf
     <input type="hidden" name="action" value="create-article">
     
-    <div class="form__row">
-      <select name="category" id="form-create-article-category" class="form__input" required>
-        @php $selected = ' selected'; @endphp
+    <div class="form__row js-category-selection-box">
+      <select class="form__input js-select-category">
         @foreach ($categories as $item)
-          @if ($item->id === old('category'))
-            <option value="{{ $item->id }}" selected>{{ $item->title }}</option>
-            @php $selected = ''; @endphp
-          @else
-            <option value="{{ $item->id }}"{{ $selected }}>{{ $item->title }}</option>
-          @endif
+          <option value="{{ $item->id }}">{{ $item->title }}</option>
         @endforeach
-        <option value="" disabled selected>--- категория ---</option>
+        <option value="0" disabled selected>--- категория ---</option>
       </select>
+
+      <input type="hidden" name="categories" value="{{ old('categories') }}" required>
+
+      <div class="js-selected-categories"></div>
     </div>
 
     <div class="form__row">
@@ -29,7 +27,7 @@
     </div>
 
     <div class="form__row">
-      <textarea name="summary" class="form__input form__input_smallarea" placeholder="Анонс (необязательно)" value="{{ old('summary') }}"></textarea>
+      <textarea name="summary" class="form__input form__input_smallarea" placeholder="Анонс (необязательно)">{{ old('summary') }}</textarea>
     </div>
 
     <div class="form__row">

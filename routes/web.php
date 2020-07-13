@@ -19,7 +19,7 @@ Route::get('/', function() {
     return redirect()->route('home');
 });
 
-Route::get('/home', 'Controller@index')
+Route::get('/home', 'HomeController@index')
     ->name('home');
 
 /*
@@ -30,17 +30,33 @@ Route::group(
     function() {
         Route::get('/', 'NewsController@index')
             ->name('news');
-        
-        Route::post('/', 'NewsController@indexPostRequest');
 
-        Route::get('/create', 'NewsController@create')
-            ->name('news/create');
+        Route::get('/category', 'CategoryController@index')
+            ->name('news/categories');
+
+        Route::get('/article/create', 'NewsController@createArticle')
+            ->name('news/article/create');
+        Route::post('/article/create', 'NewsController@postCreateArticle');
+
+        Route::get('/category/create', 'NewsController@createCategory')
+            ->name('news/category/create');
+        Route::post('/category/create', 'NewsController@postCreateCategory');
 
         Route::get('/category/{name}', 'NewsController@category')
             ->name('news/category');
+            
+        Route::get('/category/{category}/delete', 'CategoryController@delete')
+            ->name('news/category/delete');
 
-        Route::get('/article/{id}', 'NewsController@article')
+        Route::get('/article/{id}', 'NewsController@showArticle')
             ->name('news/article');
+
+        Route::get('/article/{news}/edit', 'NewsController@editArticle')
+            ->name('news/article/edit');
+        Route::post('/article/{news}/edit', 'NewsController@postEditArticle');
+
+        Route::get('/article/{news}/delete', 'NewsController@deleteArticle')
+            ->name('news/article/delete');
     }
 );
 

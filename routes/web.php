@@ -38,14 +38,14 @@ Route::group(
             ->name('news/article/create');
         Route::post('/article/create', 'NewsController@postCreateArticle');
 
-        Route::get('/category/create', 'NewsController@createCategory')
+        Route::get('/category/create', 'Admin\CategoryController@create')
             ->name('news/category/create');
-        Route::post('/category/create', 'NewsController@postCreateCategory');
+        Route::post('/category/create', 'Admin\CategoryController@store');
 
         Route::get('/category/{name}', 'NewsController@category')
             ->name('news/category');
             
-        Route::get('/category/{category}/delete', 'CategoryController@delete')
+        Route::get('/category/{category}/delete', 'Admin\CategoryController@destroy')
             ->name('news/category/delete');
 
         Route::get('/article/{id}', 'NewsController@showArticle')

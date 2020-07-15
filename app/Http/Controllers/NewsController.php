@@ -64,13 +64,6 @@ class NewsController extends Controller
         return redirect()->route('news');
     }
 
-    public function postCreateCategory(NewsCreateCategoryRequest $request)
-    {
-        $Category = new Category;
-        $Category->add($request->validated());
-        return redirect()->route('news');
-    }
-
     public function createArticle()
     {
         $Category = new Category();
@@ -108,16 +101,6 @@ class NewsController extends Controller
         $news->save();
 
         return redirect()->route('news/article', ['id' => $news->entid]);
-    }
-
-    public function createCategory()
-    {
-        $data = [
-            'title' => 'Форма создания новой категории',
-            'page_title' => 'Создать новую новостную категорию'
-
-        ];
-        return view('content/categories/create', $data);
     }
 
     public function deleteArticle(News $news)

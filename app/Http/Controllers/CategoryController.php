@@ -17,10 +17,4 @@ class CategoryController extends Controller
 
         return view('content/categories/index', $data);
     }
-
-    public function delete(Category $category)
-    {
-        $category->delete();
-        return redirect()->route('news/categories');
-    }
 }

@@ -29,4 +29,20 @@ class FeedbackRequest extends FormRequest
             'content' => ['required', 'string', 'min:4']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Поле ":attribute" необходимо для заполнения.'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'author' => 'имя',            
+            'email' => 'адрес электронной почты',
+            'content' => 'текст комментария'
+        ];
+    }
 }

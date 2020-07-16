@@ -7,56 +7,60 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
-    protected $table = 'categories';
-    protected $primaryKey = 'entid';
-    protected $fillable = [
-        'entid', 'name', 'human_name'
-    ];
-    public $timestamps = false;
+  /**
+   * base rewrite fillable fields for Category model
+   */
+  protected $fillable = [
+    'entid', 'name', 'human_name'
+  ];
+  /**
+   * disable default laravel timestamps for Category model
+   */
+  public $timestamps = false;
+  /**
+   * set primary key column name for Category model
+   */
+  protected $primaryKey = 'name';
+  /**
+   * change primary key AI setting for Category model
+   */
+  public $incrementing = false;
+  /**
+   * change primary key type for Category model
+   */
+  protected $keyType = 'string';
+  /**
+   * add relationships to Category model
+   */
+  protected $with = [
+    'entityUrlAliases', 'entity'
+  ];
 
-    public function getCategoriesList()
-    {
-        $categories = DB::table('categories as c')
-            ->select(['c.entid as id', 'c.name', 'c.human_name as title', 'ea.alias'])
-            ->leftJoin('entity_url_aliases as ea', 'ea.entid', '=', 'c.entid')
-            ->orderBy('c.human_name');
+  public function entityUrlAliases()
+  {
+    return $this->hasMany(EntityUrlAlias::class, 'entid', 'entid');
+  }
 
-        return $categories->get();
-    }
+  public function entity()
+  {
+    return $this->hasOne(Entity::class, 'entid', 'entid');
+  }
 
-    public function getCategoryInfo(string $name)
-    {
-        $category = DB::table('categories as c')
-            ->select(['c.entid as id', 'c.name', 'c.human_name as title', 'ea.alias'])
-            ->leftJoin('entity_url_aliases as ea', 'ea.entid', '=', 'c.entid')
-            ->where('c.name', '=', $name);
+  public function news()
+  {
+    $news = $this->belongsToMany(News::class, 'news_categories', 'cat_id', 'entid', 'entid', 'entid')
+      ->getBaseQuery()
+      ->orderByDesc('created')
+      ->get();
 
-        return $category->first();
-    }
+    return News::validateSummary($news);
+  }
 
-    public function getCategoryNewsList(int $cat_id)
-    {
-        $news = DB::table('news_categories as nc')
-            ->select(['nc.entid as id', 'n.title', 'n.summary', 'n.content', 'n.created as date'])
-            ->join('news as n', 'nc.entid', '=', 'n.entid')
-            ->where([
-                ['nc.cat_id', '=', $cat_id],
-                ['n.status', '=', 1]
-            ])->orderByDesc('n.created');
-
-        return $news->get();
-    }
-
-    public function add(array $data)
-    {
-        $type = DB::table('entity_types')
-            ->select('entity_type_id as id')
-            ->where('name', '=', 'category')
-            ->first();
-            
-        $data['entid'] = DB::table('entities')
-            ->insertGetId(['entity_type_id' => $type->id]);
-            
-        return Category::create($data);
-    }
+  public static function new(array $data)
+  {
+    $data['entid'] = Entity::new('category');
+    $category = new self;
+    $category->fill($data);
+    $category->save();
+  }
 }

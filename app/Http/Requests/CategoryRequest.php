@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FeedbackRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class FeedbackRequest extends FormRequest
   public function rules()
   {
     return [
-      'author' => ['required', 'string', 'min:2'],
-      'email' => ['nullable', 'email:filter'],
-      'content' => ['required', 'string', 'min:3']
+      'name' => ['required', 'string', 'min:2', 'regex:/[a-zA-Z_]+/'],
+      'human_name' => ['required', 'string', 'min:2', 'regex:/[\w+\-\s]*/']
     ];
   }
 
@@ -38,8 +37,8 @@ class FeedbackRequest extends FormRequest
   public function attributes()
   {
     return [
-      'author' => '<i>Имя отправителя</i>',
-      'content' => '<i>Сообщение</i>'
+      'name' => '<i>machine_name</i>',
+      'human_name' => '<i>Название категории</i>'
     ];
   }
 }

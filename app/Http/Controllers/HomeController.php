@@ -11,11 +11,10 @@ class HomeController extends Controller
     public function index()
     {
         $Feedbacks = new Feedback();
-        $News = new News();
         $data = [
             'title' => title('Home Page'),
             'page_title' => 'Welcome, %username%',
-            'news' => $News->getNewsList(4),
+            'news' => News::all(['*'], 4),
             'feedbacks' => $Feedbacks->getFeedbacksList(4)
         ];
         

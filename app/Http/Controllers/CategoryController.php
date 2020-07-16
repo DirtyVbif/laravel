@@ -12,15 +12,26 @@ class CategoryController extends Controller
         $data = [
             'title' => title('Новостные категории'),
             'page_title' => 'Новостные категории',
-            'categories' => Category::all(['entid as id', 'name', 'human_name as title'])
+            'categories' => Category::all()
         ];
 
         return view('content/categories/index', $data);
     }
-
-    public function delete(Category $category)
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
     {
-        $category->delete();
-        return redirect()->route('news/categories');
+        $data = [
+            'title' => title('Категория "' . $category->human_name . '"'),
+            'page_title' => 'Новости по теме "' . $category->human_name . '"',
+            'category' => $category
+        ];
+
+        return view('content/news/category', $data);
     }
 }

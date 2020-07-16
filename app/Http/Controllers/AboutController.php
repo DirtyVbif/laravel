@@ -12,11 +12,10 @@ class AboutController extends Controller
 
     public function index()
     {
-        $model = new Feedback();
         $data = [
             'title' => title('About Project'),
             'page_title' => 'About',
-            'feedbacks' => $model->getFeedbacksList(4)
+            'feedbacks' => Feedback::all(['*'], 4)
         ];
         
         return view('content/about', $data);
@@ -24,9 +23,10 @@ class AboutController extends Controller
 
     public function indexPostRequest(FeedbackRequest $request)
     {
-        $model = new Feedback();
-        $model->storeFeedback($request->validated());
-        return redirect()->route('home');
+        $feedback = new Feedback;
+        $feedback->fill($request->validated());
+        $feedback->save();
+        return redirect()->route('about');
     }
 
     public function getFeedbacksViaApi()

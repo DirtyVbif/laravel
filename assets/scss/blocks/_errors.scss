@@ -1,16 +1,19 @@
 // ------------------------------------------------------------------------
 // block
-.errors-list {
-  font-size: 14px;
+.errors {
+  font-size: 16px;
   color: #6e0505;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 3px;
+  margin: 10px 0 3px;
   // ------------------------------------------------------------------------
   // block elements
   &__item {
     padding: 3px 10px;
     display: block;
-    background: linear-gradient(90deg, #ebb8b8, #e9c8c0);
+    background: linear-gradient(90deg, #eec7c7, #f1d8d2);
     border-radius: 4px;
-    margin-bottom: 10px;
   }
 
   // ------------------------------------------------------------------------

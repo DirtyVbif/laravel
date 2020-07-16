@@ -43,3 +43,44 @@
     box-shadow: 0 0 8px #cdcdcd;
   }
 }
+
+@mixin button() {  
+  display: inline-block;
+  padding: 5px 15px;
+  color: $clr_link;
+  background: none;
+  border-radius: 4px;
+  transition: $transition;
+  cursor: pointer;
+  &:hover {
+    color: $clr_linkHover;
+  }
+}
+
+@mixin buttonGhost() {
+  border: 1px solid $clr_link;
+  &:hover {
+    color: $clr_linkHover;
+    border-color: $clr_linkHover;
+  }
+}
+
+@mixin buttonSolid() {
+  border: none;
+  background: $clr_link;
+  color: $clr_bkgd;
+  border: 1px solid $clr_link;
+  &:hover {
+    color: $clr_bkgd;
+    background: $clr_linkHover;
+    border-color: $clr_linkHover;
+  }
+}
+
+@mixin buttonActive() {  
+  &:active {
+    background-color: $clr_grey;
+    color: $clr_bkgd;
+    border-color: transparent;
+  }
+}

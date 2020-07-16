@@ -4,7 +4,7 @@
       <li class="news-wrapper__row">        
         @include('chunks/article-teaser', [
           'class' => 'news-block',
-          'id' => $item->id,
+          'id' => $item->entid,
           'item' => $item
         ])
       </li>

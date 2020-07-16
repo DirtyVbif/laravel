@@ -40,3 +40,8 @@ function randomStr(int $length = 16, bool $clear = FALSE) {
 
   return $result;
 }
+
+function strTrim(string $string, int $limit)
+{
+  return mb_strlen($string) > $limit ? mb_substr($string, 0, $limit - 4) . ' ...' : $string;
+}

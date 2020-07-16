@@ -24,6 +24,7 @@ $clr_footer: #657f94;
 $clr_link: #317ebd;
 $clr_linkHover: #e0b320;
 $clr_red: #aa1f0c;
+$clr_darkRed: #6e0505;
 $clr_redHover: #db432f;
 
 // ------------------------------------------------------------------------
@@ -49,6 +50,7 @@ $clr_redHover: #db432f;
 @import 'blocks/block';
 @import 'blocks/feedbacks';
 @import 'blocks/select-box';
+@import 'blocks/admin';
 
 // ------------------------------------------------------------------------
 // overrides and others

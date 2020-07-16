@@ -34,31 +34,18 @@ Route::group(
         Route::get('/category', 'CategoryController@index')
             ->name('news/categories');
 
-        Route::get('/article/create', 'NewsController@createArticle')
-            ->name('news/article/create');
-        Route::post('/article/create', 'NewsController@postCreateArticle');
-
-        Route::get('/category/create', 'NewsController@createCategory')
-            ->name('news/category/create');
-        Route::post('/category/create', 'NewsController@postCreateCategory');
-
-        Route::get('/category/{name}', 'NewsController@category')
+        Route::get('/category/{category}', 'CategoryController@show')
             ->name('news/category');
-            
-        Route::get('/category/{category}/delete', 'CategoryController@delete')
-            ->name('news/category/delete');
 
-        Route::get('/article/{id}', 'NewsController@showArticle')
+        Route::get('/article/{news}', 'NewsController@showArticle')
             ->name('news/article');
-
-        Route::get('/article/{news}/edit', 'NewsController@editArticle')
-            ->name('news/article/edit');
-        Route::post('/article/{news}/edit', 'NewsController@postEditArticle');
-
-        Route::get('/article/{news}/delete', 'NewsController@deleteArticle')
-            ->name('news/article/delete');
     }
 );
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('/category', Admin\CategoryController::class);
+    Route::resource('/news', Admin\NewsController::class);
+});
 
 /*
  *  user pages

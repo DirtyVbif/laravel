@@ -57,6 +57,7 @@ class NewsController extends Controller
     public function store(NewsArticleRequest $request)
     {
         News::new($request->validated());
+        return redirect('/admin/news');
     }
 
     /**

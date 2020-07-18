@@ -51,6 +51,10 @@
     </section>
   </main>
 
+  @php
+    var_dump(true === 1);
+  @endphp
+
   <footer class="page-footer">
     @section('footer')
       <x-footer-rights></x-footer-rights>

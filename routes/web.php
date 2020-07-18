@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,23 +51,23 @@ Route::group(['prefix' => 'admin'], function () {
 /*
  *  user pages
  */
-Route::group(
-    ['prefix' => 'user'],
-    function ()
-    {
-        Route::get('/', function() {
-            return redirect()->route('user/login');
-        })->name('user');
+// Route::group(
+//     ['prefix' => 'user'],
+//     function ()
+//     {
+//         Route::get('/', function() {
+//             return redirect()->route('user/login');
+//         })->name('user');
 
-        Route::post('/', 'UserController@indexPostRequest');
+//         Route::post('/', 'UserController@indexPostRequest');
 
-        Route::get('/login', 'UserController@login')
-            ->name('user/login');
+//         Route::get('/login', 'UserController@login')
+//             ->name('user/login');
 
-        Route::get('/register', 'UserController@register')
-            ->name('user/register');
-    }
-);
+//         Route::get('/register', 'UserController@register')
+//             ->name('user/register');
+//     }
+// );
 
 /*
  *  other pages
@@ -80,3 +81,8 @@ Route::group(
         Route::post('/', 'AboutController@indexPostRequest');
     }
 );
+
+Auth::routes();
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

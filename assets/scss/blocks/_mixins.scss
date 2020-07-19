@@ -84,3 +84,17 @@
     border-color: transparent;
   }
 }
+
+@mixin inputField()
+{
+  background: #ffffff;
+  border: 1px solid $clr_grey;
+  border-radius: 4px;
+  transition: $transition;
+  &:focus {
+    border-color: $clr_blue;
+  }
+  &:hover {
+    border-color: $clr_linkHover;
+  }
+}

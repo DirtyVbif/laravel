@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'usid'
     ];
 
     /**
@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * add relationships to User model
+     */
+    protected $with = [
+      'userStatus'
+    ];
+
+    public function userStatus()
+    {
+        return $this->hasOne(UserStatus::class, 'usid', 'usid');
+    }
+
+    public static function all($columns = ['*'])
+    {
+        $all = parent::all($columns);
+        foreach ($all as $item) {
+            $item->status = $item->relations['userStatus']->status;
+        }
+        return $all;
+    }
 }

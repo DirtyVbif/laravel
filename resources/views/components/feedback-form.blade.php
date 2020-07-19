@@ -4,12 +4,22 @@
 
   <div class="form__row">
     @include('chunks/form-field-error', ['field_name' => 'author'])
-    <input type="text" name="author" class="form__input" placeholder="Имя отправителя" required value="{{ old('author') }}">
+    <input type="text" name="author" class="form__input" placeholder="Имя отправителя" required
+    @if (isAnonym())
+      value="{{ old('author') }}">
+    @else
+      value="{{ user()->name }}">
+    @endif
   </div>
 
   <div class="form__row">
     @include('chunks/form-field-error', ['field_name' => 'email'])
-    <input type="email" name="email" class="form__input" placeholder="Ваш e-mail" value="{{ old('email') }}">
+    <input type="email" name="email" class="form__input" placeholder="Ваш e-mail"
+    @if (isAnonym())
+      value="{{ old('email') }}">
+    @else
+      value="{{ user()->email }}">
+    @endif
   </div>
 
   <div class="form__row">

@@ -4,7 +4,7 @@
       Список категорий
     </a>
   </li>
-  @if (true)
+  @if (isModerator())
     {{-- if uther has right for adding categories and news --}}
     <li class="news-nav-links__item">
       <a href="/admin/category/create" class="news-nav-links__link button button_ghost">

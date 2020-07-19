@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+
 function title(string $title, bool $use_mask = true)
 {
   $title_mask = '%s | Geekbrains Laravel';
@@ -45,4 +47,66 @@ function strTrim(string $string, int $limit, string $ending = '...')
 {
   $l = (int)mb_strlen($ending);
   return mb_strlen($string) > $limit ? mb_substr($string, 0, $limit - $l) . $ending : $string;
+}
+
+/**
+ * Translate string function to app language
+ * 
+ * Given string will be translated into specified language from.
+ * If given string and app has same localization then no translation need.
+ *
+ * @param string|array $string string or array with strings to translate to app language.
+ * 
+ * @param string $locale localization of given string. `en` by default
+ * 
+ * @return string translated string 
+ */
+function t($string, string $locale = 'en')
+{
+  // if given value is array then translace recursively
+  if(is_array($string)) {
+    foreach($string as &$s) {
+      $s = t($s, $locale);
+    }
+    return $string;
+  }
+  // if given value is not string return given value without translation
+  if(!is_string($string)) {
+    return $string;
+  }
+  // get app localization
+  $lang = App::getLocale();
+  // if given locale equals to app localization
+  // return original string
+  if($lang === $locale) {
+    return $string;
+  }
+  // check for translations and return original string if no translations
+  $content_file = __DIR__ . "/../../resources/lang/{$lang}/content.php";
+  if(!file_exists($content_file)) {
+    return $string;
+  }
+  // get class name where translator was called
+  $class = null;
+  foreach(debug_backtrace() as $d) {
+    if(!isset($d['class'])) { continue; }
+    $class = explode('\\', $d['class']);
+    $i = count($class) - 1;
+    $class = $class[$i];
+    break;
+  }
+  // get lang resources
+  $content = include $content_file;
+  // check for translations
+  if($class && isset($content[$class][$string])) {
+    // translate string for priority source
+    $string = $content[$class][$string];
+  } elseif(isset($content['default'][$string])) {
+    // translate string for default source
+    $string = $content['default'][$string];
+  } else {
+    $string = __($string);
+  }
+  // return translation result
+  return $string;
 }

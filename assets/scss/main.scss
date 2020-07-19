@@ -22,8 +22,10 @@ $clr_bkgd: #f7f7f7;
 $clr_menu: #4e455c;
 $clr_footer: #657f94;
 $clr_link: #317ebd;
+$clr_blue: #1185e4;
 $clr_linkHover: #e0b320;
 $clr_red: #aa1f0c;
+$clr_red2: #b40808;
 $clr_darkRed: #6e0505;
 $clr_redHover: #db432f;
 
@@ -50,7 +52,7 @@ $clr_redHover: #db432f;
 @import 'blocks/block';
 @import 'blocks/feedbacks';
 @import 'blocks/select-box';
-@import 'blocks/admin';
+@import 'blocks/status';
 
 // ------------------------------------------------------------------------
 // overrides and others

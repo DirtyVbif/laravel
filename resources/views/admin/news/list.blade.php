@@ -1,8 +1,6 @@
-@extends('page')
+@extends('admin')
 
-@section('content')
-  <x-news-nav-links></x-news-nav-links>
-  
+@section('content')  
   <ul class="admin-list">
     @foreach ($news as $i => $item)
       <li class="admin-list__item">

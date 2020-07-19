@@ -3,31 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function login()
+    public function index()
     {
+        $user = Auth::user();
+        $date1 = new \DateTime($user->created_at);
+        $date2 = new \DateTime(date('Y-m-d H:i:s'));
+        $user->lifetime = $date1->diff($date2)->format('%a days');
         $data = [
-            'title' => title('Login Page'),
-            'page_title' => 'User Login Page'
+            'title' => title(t('Profile page')),
+            'page_title' => sprintf(t('Hello, %s'), $user->name),
+            'user' => $user
         ];
 
-        return view('content/user/login', $data);
+        return view('content/auth/account', $data);
     }
 
-    public function register()
+    public function logout()
     {
-        $data = [
-            'title' => title('Registration Page'),
-            'page_title' => 'User Registration Page'
-        ];
-
-        return view('content/user/register', $data);
-    }
-
-    public function indexPostRequest(Request $request)
-    {
-        return dd($request->all());
+        Auth::logout();
+        return redirect()
+            ->route('home')
+            ->with('status', t('You have been logged out.'));
     }
 }

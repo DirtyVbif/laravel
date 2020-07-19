@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,31 +43,29 @@ Route::group(
     }
 );
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('/category', Admin\CategoryController::class);
-    Route::resource('/news', Admin\NewsController::class);
+Route::group(['middleware' => 'auth'], function () {
+    // add logout method with GET request
+    Route::get('/logout', 'UserController@logout')->name('logout');
+    // administrative section fom moderators and admins
+    Route::group([
+        'prefix' => 'admin',
+        'middleware' => 'moderator'
+        ], function () {
+            Route::geT('/', 'Admin\AdminController')->name('structure');
+            Route::resource('/category', Admin\CategoryController::class);
+            Route::resource('/news', Admin\NewsController::class);
+            Route::resource('/user', Admin\UserController::class);
+    });    
+    // user pages
+    Route::group(
+        ['prefix' => 'user'],
+        function ()
+        {
+            Route::get('/', 'UserController@index')
+                ->name('account');
+        }
+    );
 });
-
-/*
- *  user pages
- */
-Route::group(
-    ['prefix' => 'user'],
-    function ()
-    {
-        Route::get('/', function() {
-            return redirect()->route('user/login');
-        })->name('user');
-
-        Route::post('/', 'UserController@indexPostRequest');
-
-        Route::get('/login', 'UserController@login')
-            ->name('user/login');
-
-        Route::get('/register', 'UserController@register')
-            ->name('user/register');
-    }
-);
 
 /*
  *  other pages
@@ -80,3 +79,5 @@ Route::group(
         Route::post('/', 'AboutController@indexPostRequest');
     }
 );
+
+Auth::routes();

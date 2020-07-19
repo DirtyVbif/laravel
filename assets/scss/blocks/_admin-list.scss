@@ -1,15 +1,40 @@
 // ------------------------------------------------------------------------
 // block
 .admin-list {
+  border-radius: 4px;
+  border: 1px solid $clr_grey;
+  overflow: hidden;
   // ------------------------------------------------------------------------
   // block elements
   &__item {
-    @include hoverListItem();
+    background: #f3ecde;
     padding: 7px 15px;
+    &:nth-child(odd):not(.admin-list__item_header) {
+      background: #f5f3e6;
+    }
+    &_header {
+      background: #f7f7f7;
+    }
   }
 
   // ------------------------------------------------------------------------
   // block modificators
+  &_users {
+    &__item {
+      display: grid;
+      grid-template-columns: 3fr 3fr 1.5fr 2fr 0.75fr 0.75fr;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    &__name {
+      font-size: 18px;
+    }
+    &__link-edit,
+    &__link-delete {
+      align-self: center;
+      justify-self: center;
+    }
+  }
 }
 
 // ------------------------------------------------------------------------

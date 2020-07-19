@@ -2,8 +2,7 @@
 
 @section('content')
   <div class="news-article">
-    @if(true)
-      {{-- case if user has rights for editing articles --}}
+    @if(isModerator())
       <ul class="admin-actions">
         <li class="admin-actions__item">
           <a href="/admin/news/{{ $article->entid }}/edit" class="admin-actions__link admin-actions__link_edit">Редактировать</a>
@@ -13,6 +12,7 @@
         </li>
       </ul>
     @endif
+    
     <header class="news-article__header">
       <span class="news-article__date">{{ $article->created }}</span>
     </header>

@@ -19,8 +19,8 @@ class NewsController extends Controller
     public function index()
     {
         $data = [
-          'title' => 'Список материалов типа "новость"',
-          'page_header' => 'Список материалов типа "новость"',
+          'title' => t('Articles list of type "News"'),
+          'page_title' => t('Articles list of type "News"'),
           'news' => News::all()
         ];
     
@@ -35,8 +35,8 @@ class NewsController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Форма добавления новости на сайт',
-            'page_title' => 'Добавить новость',
+            'title' => t('Add news webform'),
+            'page_title' => t('Add news'),
             'categories' => Category::all(),
             'form' => (object)[
                 'action' => 'create',
@@ -80,8 +80,8 @@ class NewsController extends Controller
     public function edit(News $news)
     {
         $data = [
-            'title' => 'Форма добавления новости на сайт',
-            'page_title' => 'Добавить новость',
+            'title' => t('Edit news webform'),
+            'page_title' => sprintf(t('Edit news "%s"'), $news->title),
             'categories' => Category::all(),
             'form' => (object)[
                 'action' => 'edit',

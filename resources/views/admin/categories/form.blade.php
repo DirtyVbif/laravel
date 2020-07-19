@@ -1,4 +1,4 @@
-@extends('page')
+@extends('admin')
 
 @section('content')
   @php

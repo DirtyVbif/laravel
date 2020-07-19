@@ -19,21 +19,25 @@
     }
   }
   &__errors ~ &__input {
-    border-color: #b40808;
+    border-color: $clr_red2;
+  }
+  &__label {
+    font-size: 18px;
+
+  }
+  &__label ~ &__errors {
+    margin-top: 0;
   }
   &__input {
+    @include inputField();
+    position: relative;
     width: 100%;
     padding: 3px 10px;
     line-height: 1.2em;
-    transition: $transition;
-    border: 1px solid $clr_grey;
-    border-radius: 4px;
     &::placeholder {
       font-size: 18px;
       color: $clr_grey;
     }
-    &:hover { border-color: $clr_linkHover; }
-    &:focus { border-color: $clr_linkHover; }
     &_area {
       padding: 5px 10px;
       line-height: 1.2em;

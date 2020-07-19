@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  @isset ($title)
   <title>{{ $title }}</title>
-  @endisset
 
   <meta name="robots" content="noindex, nofollow">
 
@@ -38,6 +36,14 @@
       </div>
     @show
   </header>
+
+  @section('status')    
+    @if (session('status'))
+      <div class="container container_status" role="alert">
+        <div class="status">{{ session('status') }}</div>
+      </div>
+    @endif
+  @show
 
   <main class="container container_content">
     <section>

@@ -18,8 +18,8 @@ class CategoryController extends Controller
   public function index()
   {
     $data = [
-      'title' => '',
-      'page_header' => '',
+      'title' => t('News categories list'),
+      'page_title' => t('News categories list'),
       'categories' => Category::all()
     ];
 
@@ -34,8 +34,8 @@ class CategoryController extends Controller
   public function create()
   {
     $data = [
-      'title' => 'Форма добавления новости на сайт',
-      'page_title' => 'Добавить новую категорию',
+      'title' => t('News category add webform'),
+      'page_title' => t('Add news category'),
       'form' => (object)[
         'action' => 'create',
         'url' => "/admin/category",
@@ -79,8 +79,8 @@ class CategoryController extends Controller
   public function edit(Category $category)
   {
     $data = [
-      'title' => "Форма редактирования категории \"{$category->human_name}\"",
-      'page_title' => "Редактирование категории \"{$category->human_name}\"",
+      'title' => t('News category edit webform'),
+      'page_title' => sprintf(t('News category "%s" edit'), $category->human_name),
       'form' => (object)[
         'action' => 'edit',
         'url' => "/admin/category/{$category->name}",
